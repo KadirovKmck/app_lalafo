@@ -1,5 +1,6 @@
-import 'package:app/HomePage.dart';
 import 'package:flutter/material.dart';
+
+import '../../home/home.dart';
 
 class Filter extends StatefulWidget {
   const Filter({super.key});
@@ -26,7 +27,7 @@ class _FilterState extends State<Filter> {
   PageController pageController = PageController();
 
   SingingCharacter? _character = SingingCharacter.lafayette;
-  final double _lightValue = 0;
+  // final double _lightValue = 0;
 
   void containerTapped(Gender tappedGender) {
     setState(() {
@@ -42,43 +43,39 @@ class _FilterState extends State<Filter> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
+              icon: const Icon(
+                Icons.close,
+                size: 25,
+              )),
+          title: const Center(
+            child: Text(
+              'filter',
+              style: TextStyle(fontSize: 17),
+            ),
+          ),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 15),
+              child: Text(
+                'Go bag',
+                style: TextStyle(fontSize: 17),
+              ),
+            ),
+          ],
+        ),
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                const SizedBox(width: 20),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
-                      );
-                    });
-                  },
-                  child: const Icon(
-                    Icons.close,
-                    size: 25,
-                  ),
-                ),
-                const Spacer(),
-                const Text(
-                  'filter',
-                  style: TextStyle(fontSize: 17),
-                ),
-                const Spacer(),
-                const Text(
-                  'Go bag',
-                  style: TextStyle(fontSize: 17),
-                ),
-              ],
-            ),
-            const SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -107,7 +104,6 @@ class _FilterState extends State<Filter> {
                 ),
               ),
             ),
-            const SizedBox(height: 5),
             const Padding(
               padding: EdgeInsets.only(left: 20, top: 5),
               child: Text(
@@ -270,6 +266,7 @@ class _FilterState extends State<Filter> {
               title: const Text('Thomas Jefferson'),
               value: SingingCharacter.lafayette,
               groupValue: _character,
+              activeColor: Colors.green,
               onChanged: (SingingCharacter? value) {
                 setState(() {
                   _character = value;
@@ -280,6 +277,7 @@ class _FilterState extends State<Filter> {
               title: const Text('Thomas Jefferson'),
               value: SingingCharacter.jefferson,
               groupValue: _character,
+              activeColor: Colors.green,
               onChanged: (SingingCharacter? value) {
                 setState(() {
                   _character = value;
@@ -290,6 +288,7 @@ class _FilterState extends State<Filter> {
               title: const Text('Thomas Jefferson'),
               value: SingingCharacter.hamilton,
               groupValue: _character,
+              activeColor: Colors.green,
               onChanged: (SingingCharacter? value) {
                 setState(() {
                   _character = value;
@@ -300,6 +299,7 @@ class _FilterState extends State<Filter> {
               title: const Text('Thomas Jefferson'),
               value: SingingCharacter.washington,
               groupValue: _character,
+              activeColor: Colors.green,
               onChanged: (SingingCharacter? value) {
                 setState(() {
                   _character = value;

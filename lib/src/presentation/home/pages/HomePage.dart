@@ -1,5 +1,8 @@
-import 'package:app/Filter.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+
+import '../../filter/filter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

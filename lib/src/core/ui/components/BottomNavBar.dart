@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:university/src/presentation/home/home.dart';
-import 'package:university/src/presentation/home/pages/Fore.dart';
+import 'package:university/src/presentation/four/Fore.dart';
 import 'package:university/src/presentation/home/pages/HomePage.dart';
 import 'package:university/src/presentation/home/pages/SecondPage.dart';
 import 'package:university/src/presentation/home/pages/ThrerdPage.dart';

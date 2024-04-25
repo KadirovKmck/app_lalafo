@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:university/src/presentation/home/BottomNavBar.dart';
+import 'package:university/src/core/ui/components/BottomNavBar.dart';
 
 void main(List<String> args) {
   runApp(const App());

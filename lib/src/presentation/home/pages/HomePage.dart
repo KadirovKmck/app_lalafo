@@ -1,47 +1,26 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-
+import 'package:university/src/core/ui/texts/app_texts.dart';
 import '../../filter/filter.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final TextEditingController _searchController = TextEditingController();
-
-  List<String> textOne = [
-    '       Электро \n обокгреватель',
-    '   Мяцленный \n обокгреватель',
-    'Тепловое \n   пушки',
-    'Тепловентеляторы\n              pop',
-  ];
-
-  List<String> text2 = [
-    'Уголь',
-    '     Услуги\n электриков',
-    '     Услуги\n сантехники',
-    '        Ремон \n кондитсанера ',
-  ];
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 320,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0),
@@ -55,124 +34,121 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       child: TextFormField(
-                        controller: _searchController,
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 14.0),
-                          hintText: 'A ишу...',
+                          hintText: 'Search...',
                           border: InputBorder.none,
                           prefixIcon: Icon(Icons.search, color: Colors.grey),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Filter()),
-                            );
-                          });
-                        },
-                        child: const Text(
-                          'Фильтр',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.w900,
-                              fontSize: 15),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Filter()),
+                        );
+                      },
+                      child: const Text(
+                        'Filter',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 15,
                         ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 70,
-                child: ListView.builder(
-                  itemCount: 8,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(150),
-                        ),
-                        width: 70,
-                        // child: Image.network(
-                        //   imageUrls[index],
-                        //   fit: BoxFit.cover,
-                        // ),
+            ),
+            SizedBox(
+              height: 70,
+              child: ListView.builder(
+                itemCount: 8,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(150),
                       ),
+                      width: 70,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0, top: 8.0),
+              child: Text(
+                'Work in two clicks',
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: SizedBox(
+                height: 260,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: AppTexts.textOne.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 226, 5, 5),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        Text(
+                          AppTexts.textOne[index],
+                          style: const TextStyle(fontSize: 11),
+                        ),
+                      ],
                     );
                   },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 220),
-                child: Text(
-                  'Работа в два клика',
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
                 ),
-              ),
-              SizedBox(
-                height: 280,
-                width: 390,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: textOne.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 80,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 226, 5, 5),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            // child: Image.network(
-                            //   imageUrls[index],
-                            //   fit: BoxFit.cover,
-                            // ),
-                          ),
-                          Text(
-                            textOne[index % textOne.length],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 80,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 247, 4, 4),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            // child: Image.network(
-                            //   imageUrls[index],
-                            //   fit: BoxFit.cover,
-                            // ),
-                          ),
-                          Text(
-                            text2[index % text2.length],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        ],
+                itemCount: 5,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                    );
-                  },
-                ),
+                      color: Colors.amber,
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

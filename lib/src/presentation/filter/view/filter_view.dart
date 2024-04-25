@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../home/home.dart';
 
 class Filter extends StatefulWidget {
-  const Filter({super.key});
+  const Filter({Key? key}) : super(key: key);
 
   @override
   State<Filter> createState() => _FilterState();
@@ -27,7 +27,6 @@ class _FilterState extends State<Filter> {
   PageController pageController = PageController();
 
   SingingCharacter? _character = SingingCharacter.lafayette;
-  // final double _lightValue = 0;
 
   void containerTapped(Gender tappedGender) {
     setState(() {
@@ -47,19 +46,20 @@ class _FilterState extends State<Filter> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
-              },
-              icon: const Icon(
-                Icons.close,
-                size: 25,
-              )),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            },
+            icon: const Icon(
+              Icons.close,
+              size: 25,
+            ),
+          ),
           title: const Center(
             child: Text(
-              'filter',
+              'Filter',
               style: TextStyle(fontSize: 17),
             ),
           ),
@@ -73,22 +73,21 @@ class _FilterState extends State<Filter> {
             ),
           ],
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width - 16,
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: Colors.grey,
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: const Offset(0, 3),
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),
@@ -103,227 +102,195 @@ class _FilterState extends State<Filter> {
                   ),
                 ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20, top: 5),
-              child: Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Kategoria',
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
               ),
-            ),
-            SizedBox(
-              height: 40,
-              width: MediaQuery.of(context).size.width - 16,
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  const Text('Выберите котегорию'),
-                  const Spacer(),
-                  Icon(
-                    Icons.keyboard_arrow_right_rounded,
-                    color: Colors.black.withOpacity(0.3),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text(
-                'Kategoria',
-                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
-              ),
-            ),
-            const SizedBox(height: 5),
-            SizedBox(
-              height: 40,
-              width: MediaQuery.of(context).size.width - 16,
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  const Text('Выберите котегорию'),
-                  const Spacer(),
-                  Icon(
-                    Icons.keyboard_arrow_right_rounded,
-                    color: Colors.black.withOpacity(0.3),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 30),
-            Row(
-              children: [
-                const SizedBox(width: 20),
-                const Text(
-                  'Saaa',
-                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+              SizedBox(
+                height: 40,
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    const Text('Выберите котегорию'),
+                    const Spacer(),
+                    Icon(
+                      Icons.keyboard_arrow_right_rounded,
+                      color: Colors.black.withOpacity(0.3),
+                    )
+                  ],
                 ),
-                const Spacer(),
-                InkWell(
-                  onTap: () {
-                    containerTapped(Gender.male);
-                  },
-                  child: Center(
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Kategoria',
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+              ),
+              const SizedBox(height: 5),
+              SizedBox(
+                height: 40,
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    const Text('Выберите котегорию'),
+                    const Spacer(),
+                    Icon(
+                      Icons.keyboard_arrow_right_rounded,
+                      color: Colors.black.withOpacity(0.3),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                children: [
+                  const SizedBox(width: 20),
+                  const Text(
+                    'Saaa',
+                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+                  ),
+                  const Spacer(),
+                  InkWell(
+                    onTap: () {
+                      containerTapped(Gender.male);
+                    },
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: maleColor, width: 3),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        height: 30,
+                        width: 50,
+                        child: const Center(
+                          child: Text(
+                            'KGS',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  InkWell(
+                    onTap: () {
+                      containerTapped(Gender.female);
+                    },
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: maleColor, width: 3),
+                        border: Border.all(color: femaleColor, width: 3),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       height: 30,
                       width: 50,
                       child: const Center(
                         child: Text(
-                          'KGS',
+                          'USD',
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 5),
-                InkWell(
-                  onTap: () {
-                    containerTapped(Gender.female);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: femaleColor, width: 3),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    height: 30,
-                    width: 50,
-                    child: const Center(
-                      child: Text(
-                        'USD',
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 1,
-                            blurRadius: 5,
-                            offset: const Offset(0, 3),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextFormField(
+                          controller: _fromController,
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 14.0),
+                            hintText: 'Ot',
+                            border: InputBorder.none,
                           ),
-                        ],
-                      ),
-                      child: TextFormField(
-                        controller: _fromController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 14.0),
-                          hintText: 'Ot',
-                          border: InputBorder.none,
                         ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 1,
-                            blurRadius: 5,
-                            offset: const Offset(0, 3),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextFormField(
+                          controller: _toController,
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 14.0),
+                            hintText: 'Do',
+                            border: InputBorder.none,
                           ),
-                        ],
-                      ),
-                      child: TextFormField(
-                        controller: _toController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 14.0),
-                          hintText: 'Do',
-                          border: InputBorder.none,
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            RadioListTile<SingingCharacter>(
-              title: const Text('Thomas Jefferson'),
-              value: SingingCharacter.lafayette,
-              groupValue: _character,
-              activeColor: Colors.green,
-              onChanged: (SingingCharacter? value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-            RadioListTile<SingingCharacter>(
-              title: const Text('Thomas Jefferson'),
-              value: SingingCharacter.jefferson,
-              groupValue: _character,
-              activeColor: Colors.green,
-              onChanged: (SingingCharacter? value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-            RadioListTile<SingingCharacter>(
-              title: const Text('Thomas Jefferson'),
-              value: SingingCharacter.hamilton,
-              groupValue: _character,
-              activeColor: Colors.green,
-              onChanged: (SingingCharacter? value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-            RadioListTile<SingingCharacter>(
-              title: const Text('Thomas Jefferson'),
-              value: SingingCharacter.washington,
-              groupValue: _character,
-              activeColor: Colors.green,
-              onChanged: (SingingCharacter? value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-            const SizedBox(height: 50),
-            Center(
-              child: Container(
-                height: 50,
-                width: 400,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 6, 179, 35),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: const Center(
-                  child: Text(
-                    '10000',
-                    style: TextStyle(color: Colors.white),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  for (SingingCharacter character in SingingCharacter.values)
+                    RadioListTile<SingingCharacter>(
+                      title: Text(character.toString().split('.').last),
+                      value: character,
+                      groupValue: _character,
+                      activeColor: Colors.green,
+                      onChanged: (SingingCharacter? value) {
+                        setState(() {
+                          _character = value;
+                        });
+                      },
+                    ),
+                ],
+              ),
+              const SizedBox(height: 50),
+              Center(
+                child: Container(
+                  height: 50,
+                  width: 400,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 6, 179, 35),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      '10000',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

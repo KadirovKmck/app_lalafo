@@ -43,13 +43,12 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/icons/
 
 
-  fonts:
-    - family: NunitoSans
-      fonts:
-        - asset: assets/fonts/NunitoSans_10pt-Bold.ttf
+  # fonts:
+  #   - family: NunitoSans
+  #     fonts:
+  #       - asset: assets/fonts/NunitoSans_10pt-Bold.ttf
         # - asset: assets/fonts/NunitoSans-Variable.ttf
   #         style: italic
   #   - family: Trajan Pro

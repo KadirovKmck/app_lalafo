@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../home/home.dart';
 
-class Filter extends StatefulWidget {
-  const Filter({Key? key}) : super(key: key);
+class FilterView extends StatefulWidget {
+  const FilterView({Key? key}) : super(key: key);
 
   @override
-  State<Filter> createState() => _FilterState();
+  State<FilterView> createState() => _FilterViewState();
 }
 
 enum Gender { male, female }
@@ -18,7 +18,7 @@ Color femaleColor = activColor;
 
 enum SingingCharacter { lafayette, jefferson, hamilton, washington }
 
-class _FilterState extends State<Filter> {
+class _FilterViewState extends State<FilterView> {
   final TextEditingController _searchController = TextEditingController();
   final TextEditingController _fromController = TextEditingController();
   final TextEditingController _toController = TextEditingController();
@@ -59,7 +59,7 @@ class _FilterState extends State<Filter> {
           ),
           title: const Center(
             child: Text(
-              'Filter',
+              'FilterView',
               style: TextStyle(fontSize: 17),
             ),
           ),

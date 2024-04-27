@@ -1,3 +1,1 @@
-class FirebaseData {
-  
-}
+export 'FirebaseData/FirebaseData.dart';

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:university/src/presentation/home/home.dart';
-import 'package:university/src/presentation/four/Fore.dart';
+import 'package:university/src/presentation/four/view/Fore.dart';
 import 'package:university/src/presentation/home/pages/HomePage.dart';
 import 'package:university/src/presentation/home/pages/SecondPage.dart';
 import 'package:university/src/presentation/home/pages/ThrerdPage.dart';
@@ -73,7 +73,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     currentTab = 2;
                   });
                 },
-                icon: const Icon(Icons.person),
+                icon: const Icon(Icons.sms_rounded),
                 color: currentTab == 2 ? Colors.blue : Colors.grey,
               ),
               IconButton(
@@ -83,7 +83,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     currentTab = 3;
                   });
                 },
-                icon: const Icon(Icons.settings),
+                icon: const Icon(Icons.person),
                 color: currentTab == 3 ? Colors.blue : Colors.grey,
               ),
             ],

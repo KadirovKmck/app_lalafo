@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../home/home.dart';
-
 class FilterView extends StatefulWidget {
   const FilterView({Key? key}) : super(key: key);
 
@@ -47,10 +45,7 @@ class _FilterViewState extends State<FilterView> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
+              Navigator.pop(context);
             },
             icon: const Icon(
               Icons.close,
